@@ -16,6 +16,9 @@ export default function App() {
     VisibilityFilter.NewPoint
   );
   const [visibility, setVisibility] = useState(false);
+  const [pointsFilter, setPointsFilter] = useState(true);
+
+  const togglePointFilter = () => setPointsFilter(!pointsFilter);
 
   const handleSetName = (n: string) => {
     setName(n);
@@ -41,8 +44,16 @@ export default function App() {
   };
   return (
     <View style={styles.container}>
-      <Map points={points} onLongPress={handleLongPress} />
-      <Panel handleOpenList={handleOpenList} textLeft="Lista" />
+      <Map
+        pointsFilter={pointsFilter}
+        points={points}
+        onLongPress={handleLongPress}
+      />
+      <Panel
+        togglePointFilter={togglePointFilter}
+        handleOpenList={handleOpenList}
+        textLeft="Lista"
+      />
       <Modal visibility={visibility}>
         {visibilityFilter === VisibilityFilter.NewPoint ? (
           <View style={styles.form}>

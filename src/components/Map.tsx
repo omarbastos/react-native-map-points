@@ -5,18 +5,20 @@ import MapView, { AnimatedRegion, LatLng, Marker } from "react-native-maps";
 interface Props {
   onLongPress: any;
   points: any[];
+  pointsFilter: boolean;
 }
 interface Point {
   coordinate: LatLng | AnimatedRegion;
   name: string;
 }
 
-const Map = ({ onLongPress, points }: Props) => {
+const Map = ({ onLongPress, pointsFilter, points }: Props) => {
   return (
     <MapView style={styles.map} onLongPress={onLongPress}>
-      {points.map(({ coordinate, name }: Point, index: number) => (
-        <Marker key={index} coordinate={coordinate} title={name} />
-      ))}
+      {pointsFilter &&
+        points.map(({ coordinate, name }: Point, index: number) => (
+          <Marker key={index} coordinate={coordinate} title={name} />
+        ))}
     </MapView>
   );
 };

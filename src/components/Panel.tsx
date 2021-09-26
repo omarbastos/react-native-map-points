@@ -4,14 +4,15 @@ import { Button, StyleSheet, View, Text } from "react-native";
 interface Props {
   handleOpenList: () => void;
   textLeft: string;
+  togglePointFilter: () => void;
 }
 
-const Panel = ({ handleOpenList, textLeft }: Props) => {
+const Panel = ({ handleOpenList, textLeft, togglePointFilter }: Props) => {
   return (
     <View style={styles.panel}>
       <Button onPress={handleOpenList} title={textLeft}></Button>
 
-      <Button title="Show/Hide"></Button>
+      <Button onPress={togglePointFilter} title="Show/Hide"></Button>
     </View>
   );
 };
